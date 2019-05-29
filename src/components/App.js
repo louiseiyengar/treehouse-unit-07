@@ -8,17 +8,13 @@ import apiKey from '../config.js';
 class App extends React.Component {
  
   state = {
-    images: [],
+    button1: [],
     button2: [],
     button3: [],
     search: []
   }
 
-  componentDidMount() {
-    this.performSearch();
-  }
-
-  handlePhotoResponse(imageData) {
+  handlePhotoResponse(searchName, imageData) {
     const photoArray = imageData.photos.photo.map((photo) => {
         return ({
             id: photo.id,
@@ -27,11 +23,31 @@ class App extends React.Component {
     });
 
     this.setState({
-      images: photoArray
+      [searchName]: photoArray
     })
   }
 
-  performSearch = (query = 'lion cubs') => {
+  initialSearch = () => {
+    const queries = [encodeURIComponent('lion cubs'), encodeURIComponent('tiger cubs'), encodeURIComponent('bear cubs')]
+    const apiRequests = [];
+
+    for (let i = 0; i < queries.length; i++) {
+      apiRequests[i] = fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${queries[i]}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json());
+    }
+
+    Promise.all([apiRequests[0], apiRequests[1], apiRequests[2]])
+      .then(responseData => {
+        this.handlePhotoResponse('button1', responseData[0]);
+        this.handlePhotoResponse('button2', responseData[1]);
+        this.handlePhotoResponse('button3', responseData[2]);
+      })
+      .catch((error) => {
+        console.log("Error, error Will Robinson: ", error);
+      });
+  }
+
+  searchFormSearch = (query) => {
     query = encodeURIComponent(query);
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
@@ -43,12 +59,24 @@ class App extends React.Component {
     });
   }
 
+  performSearch = (query = 'initial setup') => {
+    if (query === 'initial setup') {
+      this.initialSearch();
+    } else {
+      this.searchFormSearch(query);
+    }
+  }
+
+  componentDidMount() {
+    this.performSearch();
+  }
+
   render () {
     return (
         <div className="container">
           <Header />
           <Nav />
-          <Gallery gallery={this.state.images} />
+          <Gallery gallery={this.state.button1} />
         </div>
     );
   }
