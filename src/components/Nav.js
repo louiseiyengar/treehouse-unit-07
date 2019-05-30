@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {
+  NavLink
+} from 'react-router-dom'
 
-class Nav extends Component {
-  render () {
-    return (
-      <nav className="main-nav">
+const Nav =(props) => (
+    <nav className="main-nav">
       <ul>
-        <li><a href='puddlie'>Lion Cubs</a></li>
-        <li><a href='wuddlie'>Tiger Cubs</a></li>
-        <li><a href='muddlie'>Bear Cubs</a></li>
+        <li><NavLink exact to='/button1'>{props.buttonText[0]}</NavLink></li>
+        <li><NavLink exact to='/button2'>{props.buttonText[1]}</NavLink></li>
+        <li><NavLink exact to='/button3'>{props.buttonText[2]}</NavLink></li>
       </ul>
-      </nav>
-    );
-  }
-}
+    </nav>
+);
 
 export default Nav;

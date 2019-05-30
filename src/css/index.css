@@ -58,7 +58,7 @@ input {
   color: #fff;
 }
 
-.main-nav .active,
+.main-nav a.active,
 .main-nav a:hover,
 .search-form button:hover {
   background-color: #275270;
