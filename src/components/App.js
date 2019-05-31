@@ -11,7 +11,8 @@ class App extends React.Component {
     button1: [],
     button2: [],
     button3: [],
-    search: []
+    search: [],
+    loading: true
   }
 
   initialSearchTerms = ["Sunsets", "Perfume Bottles", "Lion Cubs"];
@@ -24,16 +25,19 @@ class App extends React.Component {
           })
     });
 
-    this.setState({
-      [searchName]: photoArray
-    })
+    setTimeout (() => {
+      this.setState({
+        [searchName]: photoArray,
+        loading: false
+      })
+    }, 2000)
   }
 
   initialSearch = () => {
-    console.log("are you here");
     let queries = [];
     const apiRequests = [];
 
+    this.setState({ loading: true });
     queries = this.initialSearchTerms.map(term => encodeURIComponent(term));
 
     for (let i = 0; i < queries.length; i++) {
@@ -48,18 +52,21 @@ class App extends React.Component {
         }
       })
       .catch((error) => {
-        console.log("Error, error Will Robinson: ", error);
+        console.log("There was an error retrieving data from Flickr:", error);
       });
   }
 
   searchFormSearch = (query) => {
+
+    this.setState({ loading: true });
+
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${encodeURIComponent(query)}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
         this.handlePhotoResponse('search', responseData);
     })
     .catch((error) => {
-      console.log("Error, error Will Robinson: ", error);
+      console.log("There was an error retrieving data from Flickr:", error);
     });
   }
 
@@ -104,13 +111,13 @@ class App extends React.Component {
           <Route exact path='/' 
             render={ () => <Redirect to="/button1" />} />
           <Route path="/button1" 
-              render={ () => <Gallery gallery={this.state.button1} /> } />
+              render={ () => <Gallery gallery={this.state.button1} loading={this.state.loading} /> } />
           <Route path="/button2" 
-              render={ () => <Gallery gallery={this.state.button2} /> } />
+              render={ () => <Gallery gallery={this.state.button2} loading={this.state.loading} /> } />
           <Route path="/button3" 
-              render={ () => <Gallery gallery={this.state.button3} /> } />
+              render={ () => <Gallery gallery={this.state.button3} loading={this.state.loading} /> } />
           <Route path="/search/:searchTerm"
-              render={ () => <Gallery gallery={this.state.search} /> } />
+              render={ () => <Gallery gallery={this.state.search} loading={this.state.loading} /> } />
       </div>
     );
   }
