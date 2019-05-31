@@ -16,7 +16,7 @@ class App extends React.Component {
 
   initialSearchTerms = ["Sunsets", "Perfume Bottles", "Lion Cubs"];
 
-  handlePhotoResponse(searchName, imageData) {
+  handlePhotoResponse(searchName, imageData, query = '') {
     const photoArray = imageData.photos.photo.map((photo) => {
         return ({
             id: photo.id,
@@ -30,6 +30,7 @@ class App extends React.Component {
   }
 
   initialSearch = () => {
+    console.log("are you here");
     let queries = [];
     const apiRequests = [];
 
@@ -52,8 +53,7 @@ class App extends React.Component {
   }
 
   searchFormSearch = (query) => {
-    query = encodeURIComponent(query);
-    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${encodeURIComponent(query)}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
         this.handlePhotoResponse('search', responseData);
@@ -80,16 +80,26 @@ class App extends React.Component {
     this.performSearch(query);
   }
 
+  componentDidUpdate(prevProps) {
+    const prevPath = prevProps.location.pathname;
+    const thisPath = this.props.location.pathname;
+    if (thisPath.indexOf('/search/') > -1) {
+      if (thisPath !== prevPath) {
+        const query = thisPath.replace('/search/', '')
+        this.performSearch(query);
+      }
+    }
+  }
+
   render () {
-    console.log(this.props)
     return (
       <div className="container">
-          <Route path="/" 
+          <Route
             render={ (props) => <Header {...props} 
                       buttonText={this.initialSearchTerms} 
                       search={this.performSearch} 
           />} />
-          <Route path="/" 
+          <Route
             render={ () => <Nav buttonText={this.initialSearchTerms} />} />
           <Route exact path='/' 
             render={ () => <Redirect to="/button1" />} />
