@@ -1,68 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+FSJS project 7 - React Gallery App
+For this project, I used React, React Router DOM 4, and JavaScripts Fetch API interface to create an App that makes an API call to Flickr to retreive and display 24 Flickr photos.
 
-## Available Scripts
+The App will display Flickr photos that have tags matching terms on three buttons -- you click a button to choose a term for photos that match that term.  There is also a search form so that you can view photos that match a term you enter.
 
-In the project directory, you can run:
 
-### `npm start`
+======= To Note ==========================
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The App will display a 404 error page if there was an incorrect URL to the site.
+The App will display a message if no photos were found for a search.
+The App will display a loading indicator while photos are loading into the site.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+======= Instuctions to view project locally =========
 
-### `npm test`
+To run this project locally, you must have node.js and npm installed.
+Download or clone the project from this repo.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+First, you will need to have an API Key from Flickr. With this API key, you need to:
+1) create a config.js file.  The config file file should contain the following:
+***const apiKey = 'YOUR API KEY';
+export default apiKey;***
+2) Put the file in the **/scr** folder
 
-### `npm run build`
+The project was created using the Create React App tool and React Router DOM 4 also installed.  You must run:
+**npm install**
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Then Run **npm start** to start the server and application. When you see the 'Compiled successfully!' message, you can view the site in your browser at: **localhost:3000** 
