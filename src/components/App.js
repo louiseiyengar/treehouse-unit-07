@@ -1,7 +1,8 @@
 import React from 'react';
-import {Route, Redirect} from 'react-router-dom';
+import {Route, Redirect, Switch} from 'react-router-dom';
 import Header from './Header';
 import Nav from './Nav';
+import NotFound from './NotFound';
 import Gallery from './photos/Gallery';
 import apiKey from '../config.js';
 
@@ -25,12 +26,10 @@ class App extends React.Component {
           })
     });
 
-    setTimeout (() => {
-      this.setState({
-        [searchName]: photoArray,
-        loading: false
-      })
-    }, 2000)
+    this.setState({
+      [searchName]: photoArray,
+      loading: false
+    })
   }
 
   initialSearch = () => {
@@ -110,14 +109,17 @@ class App extends React.Component {
             render={ () => <Nav buttonText={this.initialSearchTerms} />} />
           <Route exact path='/' 
             render={ () => <Redirect to="/button1" />} />
-          <Route path="/button1" 
-              render={ () => <Gallery gallery={this.state.button1} loading={this.state.loading} /> } />
-          <Route path="/button2" 
-              render={ () => <Gallery gallery={this.state.button2} loading={this.state.loading} /> } />
-          <Route path="/button3" 
-              render={ () => <Gallery gallery={this.state.button3} loading={this.state.loading} /> } />
-          <Route path="/search/:searchTerm"
-              render={ () => <Gallery gallery={this.state.search} loading={this.state.loading} /> } />
+          <Switch>  
+            <Route path="/button1" 
+                render={ () => <Gallery gallery={this.state.button1} loading={this.state.loading} /> } />
+            <Route path="/button2" 
+                render={ () => <Gallery gallery={this.state.button2} loading={this.state.loading} /> } />
+            <Route path="/button3" 
+                render={ () => <Gallery gallery={this.state.button3} loading={this.state.loading} /> } />
+            <Route path="/search/:searchTerm"
+                render={ () => <Gallery gallery={this.state.search} loading={this.state.loading} /> } />
+            <Route component={NotFound} />
+        </Switch>
       </div>
     );
   }
