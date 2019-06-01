@@ -1,6 +1,6 @@
 # FSJS project 7 - React Gallery App
 
-For this project, I used React, React Router DOM 4, and JavaScripts Fetch API interface to create an App that makes an API call to Flickr to retreive and display 24 Flickr photos.
+For this project, I used React, React Router DOM 4, and JavaScript's Fetch API interface to create an App that makes an API call to Flickr to retreive and display 24 Flickr photos.
 
 The App will display Flickr photos that have tags matching terms on three buttons -- you click a button to choose a term for photos that match that term.  There is also a search form so that you can view photos that match a term you enter.
 
