@@ -16,9 +16,17 @@ class App extends React.Component {
     loading: true
   }
 
+  // Terms for 'button' search - these are the terms that will appear on the buttons
   initialSearchTerms = ["Sunsets", "Perfume Bottles", "Lion Cubs"];
 
-  handlePhotoResponse(searchName, imageData, query = '') {
+   /**
+   * This method is called after the API to Flickr has responded successfully.  It puts
+   * a photo id and creates a URL for each photo returned.  This information is saved to state.
+   * 
+   * @param {string} searchName - either 'search', 'button1, button2, or button3
+   * @param {array} - array of JSON photo objects returned from API
+   */
+  handlePhotoResponse(searchName, imageData) {
     const photoArray = imageData.photos.photo.map((photo) => {
         return ({
             id: photo.id,
@@ -32,11 +40,16 @@ class App extends React.Component {
     })
   }
 
+   /**
+   * This method makes three API calls to Flickr - for the terms on the three buttons.  The calls are 
+   * made as three Promise.All fetchs.  Upon successful response, a method is call to save info for 
+   * 24 photos to state 
+   */
   initialSearch = () => {
     let queries = [];
     const apiRequests = [];
 
-    this.setState({ loading: true });
+    this.setState({ loading: true }); //so that a loading page will appear before photos are received and loaded
     queries = this.initialSearchTerms.map(term => encodeURIComponent(term));
 
     for (let i = 0; i < queries.length; i++) {
@@ -55,9 +68,13 @@ class App extends React.Component {
       });
   }
 
+   /**
+   * This method the API call to Flickr a term entered in the Search Form. 
+   * Upon successful response, a method is call to save info for 
+   * 24 photos to state 
+   */
   searchFormSearch = (query) => {
-
-    this.setState({ loading: true });
+    this.setState({ loading: true }); //so that a loading page will appear before photos are received and loaded
 
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${encodeURIComponent(query)}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
@@ -80,12 +97,20 @@ class App extends React.Component {
     }
   }
 
+  /*
+    This will execute the intial search for the site - the query is either the intials setup search for the three buttons
+    //or the term entered in the search form, which will be a param in the URL.
+  */
   componentDidMount() {
     const thisPath = this.props.location.pathname;
     const query = (thisPath.indexOf('/search/') > -1) ? thisPath.replace('/search/', '') : 'initial setup';
     this.performSearch(query);
   }
 
+  /*
+    This will execute a s new API request if the back or forward browser history button is pressed and
+    the URL contains a search parameter for a term entered in the search form  
+  */
   componentDidUpdate(prevProps) {
     const prevPath = prevProps.location.pathname;
     const thisPath = this.props.location.pathname;

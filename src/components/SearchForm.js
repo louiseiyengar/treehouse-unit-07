@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 
 class SearchForm extends Component {
 
+  /*
+    This method will execute a call back search (the method passed in this.props.ssearch) and 
+    so an API request will be made for Flickr photos for that search term.
+    
+    It will also put the search term as a param in the URL.
+  */
   handleSubmit = (e) => {
     e.preventDefault();
     let searchItem = this.searchItem.value;
