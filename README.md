@@ -17,8 +17,9 @@ Download or clone the project from this repo.
 
 First, you will need to have an API Key from Flickr. With this API key, you need to:
 1) create a config.js file.  The config file file should contain the following:
-***const apiKey = 'YOUR API KEY';
-export default apiKey;***
+ 
+```const apiKey = 'YOUR API KEY';
+export default apiKey;```
 2) Put the file in the **/scr** folder
 
 The project was created using the Create React App tool and React Router DOM 4 also installed.  You must run:
