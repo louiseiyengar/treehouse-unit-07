@@ -30,3 +30,6 @@ B) The project was created using the Create React App tool and React Router DOM 
 **npm install**
 
 C) Then Run **npm start** to start the server and application. When you see the 'Compiled successfully!' message, you can view the site in your browser at: **localhost:3000** 
+
+Screenshot of React Gallery App:
+![Unit07Example](https://user-images.githubusercontent.com/42808209/58754790-c3be2700-84a5-11e9-9373-d8a14eb868f3.jpg)
