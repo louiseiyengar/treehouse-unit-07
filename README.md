@@ -7,9 +7,9 @@ The App will display Flickr photos that have tags matching terms on three button
 
 ======= To Note ==========================
 
-The App will display a 404 error page if there was an incorrect URL to the site.
-The App will display a message if no photos were found for a search.
-The App will display a loading indicator while photos are loading into the site.
+1) The App will display a 404 error page if there was an incorrect URL to the site.
+2) The App will display a message if no photos were found for a search.
+3) The App will display a loading indicator while photos are loading into the site.
 
 ======= Instuctions to view project locally =========
 
