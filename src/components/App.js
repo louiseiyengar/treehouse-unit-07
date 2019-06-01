@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Redirect, Switch} from 'react-router-dom';
 import Header from './Header';
 import Nav from './Nav';
+import Footer from './Footer';
 import NotFound from './NotFound';
 import Gallery from './photos/Gallery';
 import apiKey from '../config.js';
@@ -89,6 +90,7 @@ class App extends React.Component {
   componentDidUpdate(prevProps) {
     const prevPath = prevProps.location.pathname;
     const thisPath = this.props.location.pathname;
+    
     if (thisPath.indexOf('/search/') > -1) {
       if (thisPath !== prevPath) {
         const query = thisPath.replace('/search/', '')
@@ -100,26 +102,27 @@ class App extends React.Component {
   render () {
     return (
       <div className="container">
-          <Route
-            render={ (props) => <Header {...props} 
-                      buttonText={this.initialSearchTerms} 
-                      search={this.performSearch} 
-          />} />
-          <Route
-            render={ () => <Nav buttonText={this.initialSearchTerms} />} />
-          <Route exact path='/' 
-            render={ () => <Redirect to="/button1" />} />
-          <Switch>  
-            <Route path="/button1" 
-                render={ () => <Gallery gallery={this.state.button1} loading={this.state.loading} /> } />
-            <Route path="/button2" 
-                render={ () => <Gallery gallery={this.state.button2} loading={this.state.loading} /> } />
-            <Route path="/button3" 
-                render={ () => <Gallery gallery={this.state.button3} loading={this.state.loading} /> } />
-            <Route path="/search/:searchTerm"
-                render={ () => <Gallery gallery={this.state.search} loading={this.state.loading} /> } />
-            <Route component={NotFound} />
+        <Route
+          render={ (props) => <Header {...props} 
+                    buttonText={this.initialSearchTerms} 
+                    search={this.performSearch} 
+        />} />
+        <Route
+          render={ () => <Nav buttonText={this.initialSearchTerms} />} />
+        <Route exact path='/' 
+          render={ () => <Redirect to="/button1" />} />
+        <Switch>  
+          <Route path="/button1" 
+              render={ () => <Gallery gallery={this.state.button1} loading={this.state.loading} /> } />
+          <Route path="/button2" 
+              render={ () => <Gallery gallery={this.state.button2} loading={this.state.loading} /> } />
+          <Route path="/button3" 
+              render={ () => <Gallery gallery={this.state.button3} loading={this.state.loading} /> } />
+          <Route path="/search/:searchTerm"
+              render={ () => <Gallery gallery={this.state.search} loading={this.state.loading} /> } />
+          <Route component={NotFound} />
         </Switch>
+        <Route component={Footer} />
       </div>
     );
   }
