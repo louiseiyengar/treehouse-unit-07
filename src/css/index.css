@@ -1,11 +1,13 @@
 body {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
-  color: #3f4850;
+  font-family: "Nunito", sans-serif;
+  background-color: #b1b0b09c;
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 2.5em;
+  color: #fbf4f4;
+  text-shadow: 2px 2px 7px #000000;
   margin: 52px 0 40px;
   text-transform: capitalize;
 }
@@ -19,15 +21,26 @@ a {
   text-decoration: none;
 }
 
+footer {
+  margin: 0 auto;
+  max-width: 960px;
+  font-size: 1rem;
+  color: #fbf4f4;
+  text-shadow: 2px 2px 7px #000000;
+  border-top: 2px solid #fbf4f4;
+  padding: 1em;
+  height: 50px;
+}
+
 .search-form {
   max-width: 460px;
   display: flex;
-  margin: 0 auto 32px;
+  margin: 0 auto;
 }
 
 .search-form button {
   outline: none;
-  background-color: #438bbd;
+  background-color: #614375;
   border: none;
   padding: 0px 15px;
   border-radius: 0 0.35em 0.35em 0;
@@ -45,6 +58,11 @@ input {
   outline: none;
 }
 
+.main-nav {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #fbf4f4;
+}
+
 .main-nav li {
   width: 100%;
   margin-bottom: 1em;
@@ -52,16 +70,25 @@ input {
 
 .main-nav a {
   display: block;
-  background: #438bbd;
-  border-radius: 3px;
+  background: #614375;
+  border-radius: 10px;
+  border: 2px solid white;
   padding: 5px;
   color: #fff;
+  min-height: 3em;
+  font-size: 1.2em;
+  width: 98%;
+  transition: .4s ease-out;
 }
 
 .main-nav a.active,
-.main-nav a:hover,
 .search-form button:hover {
-  background-color: #275270;
+  background-color: #a26588;
+}
+
+.main-nav a:hover {
+  background-color: #a26588;
+  box-shadow: 3px 3px 8px #666;
 }
 
 .photo-container ul {
@@ -125,7 +152,7 @@ input {
 
 @media only screen and (max-width: 767px)  {
   body {
-    padding-top: 2em;
+    padding-top: 0em;
   }
 
   .photo-container li {
@@ -135,12 +162,13 @@ input {
 
 @media only screen and (min-width: 768px)  {
   body {
-    padding-top: 4em;
+    padding-top: 0em;
   }
 
   .container {
     max-width: 960px;
     margin: auto;
+    min-height: calc(100vh - 175px);
   }
 
   .main-nav ul {
@@ -149,7 +177,7 @@ input {
   }
   
   .main-nav li {
-    margin: 10px;
+    margin: 10px 25px;
     width: 100px;
   }
 }

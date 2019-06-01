@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Footer =(props) => (
-    <footer className="main-nav">
+    <footer>
       <div>
-          This is my footer
+       &copy; Louise Iyengar - Treehouse FSJS - Learning React
       </div>
     </footer>
 );

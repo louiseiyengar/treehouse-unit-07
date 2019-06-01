@@ -2,7 +2,6 @@ import React from 'react';
 import {Route, Redirect, Switch} from 'react-router-dom';
 import Header from './Header';
 import Nav from './Nav';
-import Footer from './Footer';
 import NotFound from './NotFound';
 import Gallery from './photos/Gallery';
 import apiKey from '../config.js';
@@ -122,7 +121,6 @@ class App extends React.Component {
               render={ () => <Gallery gallery={this.state.search} loading={this.state.loading} /> } />
           <Route component={NotFound} />
         </Switch>
-        <Route component={Footer} />
       </div>
     );
   }
