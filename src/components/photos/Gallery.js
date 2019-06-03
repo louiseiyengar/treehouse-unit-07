@@ -10,7 +10,7 @@ const Gallery = props => {
   if (props.loading) {  
     photos = <LoadingPhotos />
   } else if (galleryList.length > 0) {
-    photos = galleryList.map((photo, index) =><GalleryItem key={index + 1} url={photo.url} id={index + 1} />);
+    photos = galleryList.map((photo) =><GalleryItem key={photo.id} url={photo.url} />);
   } else {
     photos = <NoPhotos />
   }
