@@ -11,6 +11,10 @@ The App will display Flickr photos that have tags matching terms on three button
 2) The App will display a message if no photos were found for a search.
 3) The App will display a loading indicator while photos are loading into the site.
 
+======= URL to view build on Github pages =================
+
+https://louiseiyengar.github.io/flickrGallery/
+
 ======= Instuctions to view project locally =========
 
 To run this project locally, you must have node.js and npm installed.
